@@ -15,14 +15,7 @@ function (angular, app, _, kbn, TimeSeries, PanelMeta) {
   var module = angular.module('grafana.panels.histogram');
   app.useModule(module);
 
-  module.directive('grafanaPanelHistogram', function() {
-    return {
-      controller: 'HistogramCtrl',
-      templateUrl: 'public/plugins/histogram/module.html',
-    };
-  });
-
-  module.controller('HistogramCtrl', function($scope, $rootScope, panelSrv, panelHelper) {
+  function HistogramCtrl($scope, $rootScope, panelSrv, panelHelper) {
 
     $scope.panelMeta = new PanelMeta({
       panelName: 'Histogram',
@@ -75,6 +68,8 @@ function (angular, app, _, kbn, TimeSeries, PanelMeta) {
       pointradius   : 5,
       // show hide bars
       bars          : false,
+      // enable/disable ordered
+      ordered       : false,
       // enable/disable stacking
       stack         : false,
       // stack percentage mode
@@ -270,6 +265,17 @@ function (angular, app, _, kbn, TimeSeries, PanelMeta) {
 
     panelSrv.init($scope);
 
-  });
+  }
+
+  function grafanaPanelHistogramDirective() {
+    return {
+      controller: HistogramCtrl,
+      templateUrl: 'public/plugins/histogram/module.html'
+    };
+  }
+
+  return {
+    panel: grafanaPanelHistogramDirective
+  };
 
 });
