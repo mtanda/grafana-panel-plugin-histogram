@@ -65,15 +65,10 @@ System.register(['app/plugins/sdk', 'app/plugins/panel/graph/module', 'app/core/
       _export('HistogramCtrl', HistogramCtrl = function (_GraphCtrl) {
         _inherits(HistogramCtrl, _GraphCtrl);
 
-        /** @ngInject */
-
-        function HistogramCtrl($scope, $injector, $rootScope, annotationsSrv) {
+        function HistogramCtrl() {
           _classCallCheck(this, HistogramCtrl);
 
-          var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HistogramCtrl).call(this, $scope, $injector, annotationsSrv));
-
-          _this.$rootScope = $rootScope;
-          return _this;
+          return _possibleConstructorReturn(this, Object.getPrototypeOf(HistogramCtrl).apply(this, arguments));
         }
 
         _createClass(HistogramCtrl, [{

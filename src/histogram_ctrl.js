@@ -4,11 +4,6 @@ import kbn from 'app/core/utils/kbn';
 import template from './template';
 
 export class HistogramCtrl extends GraphCtrl {
-  /** @ngInject */
-  constructor($scope, $injector, $rootScope, annotationsSrv) {
-    super($scope, $injector, annotationsSrv);
-    this.$rootScope = $rootScope;
-  }
 
   onInitEditMode() {
     this.addEditorTab('Legend', 'public/app/plugins/panel/graph/tab_legend.html', 2);
