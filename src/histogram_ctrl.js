@@ -8,6 +8,7 @@ export class HistogramCtrl extends GraphCtrl {
   constructor($scope, $injector, $rootScope, annotationsSrv) {
     super($scope, $injector, annotationsSrv);
     this.$rootScope = $rootScope;
+    this.annotationsSrv = annotationsSrv;
   }
 
   onInitEditMode() {
@@ -23,6 +24,16 @@ export class HistogramCtrl extends GraphCtrl {
       'log (base 1024)': 1024
     };
     this.unitFormats = kbn.getUnitFormats();
+  }
+
+  issueQueries(datasource) {
+    this.annotationsPromise = this.annotationsSrv.getAnnotations(this.dashboard);
+    return super.issueQueries(datasource);
+  }
+
+  onDataSnapshotLoad(snapshotData) {
+    this.annotationsPromise = this.annotationsSrv.getAnnotations(this.dashboard);
+    this.onDataReceived(snapshotData);
   }
 }
 
